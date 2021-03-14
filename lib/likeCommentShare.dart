@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:websafe_svg/websafe_svg.dart';
-
 import 'IconSvg.dart';
 
 class LikeCommentShare extends StatelessWidget {
