@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 class UserProfileImageAndName extends StatelessWidget {
   const UserProfileImageAndName({
     Key key,
@@ -23,8 +24,12 @@ class UserProfileImageAndName extends StatelessWidget {
           ),
         ),
         Padding(
-          padding: EdgeInsets.fromLTRB(iconsHeight*0.2, 0, 0, 0),
-          child: Text('john_doe',style: TextStyle(color: Colors.white,fontWeight: FontWeight.w600,fontSize: 17),),
+          padding: EdgeInsets.fromLTRB(iconsHeight * 0.2, 0, 0, 0),
+          child: Text(
+            'john_doe',
+            style: TextStyle(
+                color: Colors.white, fontWeight: FontWeight.w600, fontSize: iconsHeight*0.35),
+          ),
         )
       ],
     );

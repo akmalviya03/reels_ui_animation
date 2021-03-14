@@ -101,7 +101,7 @@ class _VideoAnimationTileState extends State<VideoAnimationTile>
                             children: [
                               BetterPlayer(controller: _betterPlayerController),
                               Padding(
-                                padding: const EdgeInsets.all(16.0),
+                                padding: EdgeInsets.all(iconsHeight*0.5),
                                 child: Column(
                                   mainAxisAlignment: MainAxisAlignment.end,
                                   children: [
@@ -115,10 +115,10 @@ class _VideoAnimationTileState extends State<VideoAnimationTile>
                                           MainAxisAlignment.spaceBetween,
                                       children: [
                                         LikeCommentShare(
-                                            iconsHeight: iconsHeight,
+                                            iconsHeight: iconsHeight*0.5,
                                             controller: _controller),
                                         LikesAndComments(
-                                            iconsHeight: iconsHeight)
+                                            iconsHeight: iconsHeight*0.5)
                                       ],
                                     ),
                                   ],

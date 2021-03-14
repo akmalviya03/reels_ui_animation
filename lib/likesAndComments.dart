@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'IconSvg.dart';
+
 class LikesAndComments extends StatelessWidget {
   const LikesAndComments({
     Key key,
@@ -12,17 +14,32 @@ class LikesAndComments extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       children: [
-        Container(
-          width: iconsHeight,
-          height: iconsHeight,
-          color: Colors.amber,
-          child: Text('Likes'),
+        Row(
+          children: [
+            IconSvg(
+              iconsHeight: iconsHeight*0.7,
+              svgString: 'assets/svgs/like.svg',
+            ),
+            Text(
+              ' 230k',
+              style: TextStyle(
+                  color: Colors.white, fontWeight: FontWeight.w400, fontSize: iconsHeight*0.7),
+            ),
+          ],
         ),
-        Container(
-          width: iconsHeight,
-          height: iconsHeight,
-          color: Colors.amber,
-          child: Text('Comments'),
+        SizedBox(width: iconsHeight * 0.7,),
+        Row(
+          children: [
+            IconSvg(
+              iconsHeight: iconsHeight*0.7,
+              svgString: 'assets/svgs/comment.svg',
+            ),
+            Text(
+              ' 145k',
+              style: TextStyle(
+                  color: Colors.white, fontWeight: FontWeight.w400, fontSize: iconsHeight*0.7),
+            ),
+          ],
         ),
       ],
     );

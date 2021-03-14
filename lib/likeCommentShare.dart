@@ -1,10 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:websafe_svg/websafe_svg.dart';
+
+import 'IconSvg.dart';
+
 class LikeCommentShare extends StatelessWidget {
   const LikeCommentShare({
     Key key,
     @required this.iconsHeight,
     @required AnimationController controller,
-  }) : _controller = controller, super(key: key);
+  })  : _controller = controller,
+        super(key: key);
 
   final double iconsHeight;
   final AnimationController _controller;
@@ -13,28 +18,28 @@ class LikeCommentShare extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       children: [
-        Container(
-          width: iconsHeight,
-          height: iconsHeight,
-          color: Colors.amber,
-          child: Text('Like'),
+        IconSvg(
+          iconsHeight: iconsHeight,
+          svgString: 'assets/svgs/like.svg',
+        ),
+        SizedBox(
+          width: iconsHeight * 0.4,
         ),
         GestureDetector(
-          child: Container(
-            width: iconsHeight,
-            height: iconsHeight,
-            color: Colors.amber,
-            child: Text('Comment'),
+          child: IconSvg(
+            iconsHeight: iconsHeight,
+            svgString: 'assets/svgs/comment.svg',
           ),
-          onTap: (){
+          onTap: () {
             _controller.forward();
           },
         ),
-        Container(
-          width: iconsHeight,
-          height: iconsHeight,
-          color: Colors.amber,
-          child: Text('Share'),
+        SizedBox(
+          width: iconsHeight * 0.4,
+        ),
+        IconSvg(
+          iconsHeight: iconsHeight,
+          svgString: 'assets/svgs/send.svg',
         ),
       ],
     );
