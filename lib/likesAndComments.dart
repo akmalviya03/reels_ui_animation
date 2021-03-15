@@ -5,10 +5,10 @@ import 'IconSvg.dart';
 class LikesAndComments extends StatelessWidget {
   const LikesAndComments({
     Key key,
-    @required this.iconsHeight,
+    @required this.iconSize,
   }) : super(key: key);
 
-  final double iconsHeight;
+  final double iconSize;
 
   @override
   Widget build(BuildContext context) {
@@ -17,27 +17,27 @@ class LikesAndComments extends StatelessWidget {
         Row(
           children: [
             IconSvg(
-              iconsHeight: iconsHeight*0.7,
+              iconsHeightAndWidth: iconSize*0.7,
               svgString: 'assets/svgs/like.svg',
             ),
             Text(
               ' 230k',
               style: TextStyle(
-                  color: Colors.white, fontWeight: FontWeight.w400, fontSize: iconsHeight*0.7),
+                  color: Colors.white, fontWeight: FontWeight.w400, fontSize: iconSize*0.7),
             ),
           ],
         ),
-        SizedBox(width: iconsHeight * 0.7,),
+        SizedBox(width: iconSize * 0.7,),
         Row(
           children: [
             IconSvg(
-              iconsHeight: iconsHeight*0.7,
+              iconsHeightAndWidth: iconSize*0.7,
               svgString: 'assets/svgs/comment.svg',
             ),
             Text(
               ' 145k',
               style: TextStyle(
-                  color: Colors.white, fontWeight: FontWeight.w400, fontSize: iconsHeight*0.7),
+                  color: Colors.white, fontWeight: FontWeight.w400, fontSize: iconSize*0.7),
             ),
           ],
         ),

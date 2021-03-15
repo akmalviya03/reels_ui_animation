@@ -4,12 +4,12 @@ import 'IconSvg.dart';
 class LikeCommentShare extends StatelessWidget {
   const LikeCommentShare({
     Key key,
-    @required this.iconsHeight,
+    @required this.iconSize,
     @required AnimationController controller,
   })  : _controller = controller,
         super(key: key);
 
-  final double iconsHeight;
+  final double iconSize;
   final AnimationController _controller;
 
   @override
@@ -17,15 +17,15 @@ class LikeCommentShare extends StatelessWidget {
     return Row(
       children: [
         IconSvg(
-          iconsHeight: iconsHeight,
+          iconsHeightAndWidth: iconSize,
           svgString: 'assets/svgs/like.svg',
         ),
         SizedBox(
-          width: iconsHeight * 0.4,
+          width: iconSize * 0.4,
         ),
         GestureDetector(
           child: IconSvg(
-            iconsHeight: iconsHeight,
+            iconsHeightAndWidth: iconSize,
             svgString: 'assets/svgs/comment.svg',
           ),
           onTap: () {
@@ -33,10 +33,10 @@ class LikeCommentShare extends StatelessWidget {
           },
         ),
         SizedBox(
-          width: iconsHeight * 0.4,
+          width: iconSize * 0.4,
         ),
         IconSvg(
-          iconsHeight: iconsHeight,
+          iconsHeightAndWidth: iconSize,
           svgString: 'assets/svgs/send.svg',
         ),
       ],
