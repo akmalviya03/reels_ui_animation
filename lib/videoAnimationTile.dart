@@ -19,11 +19,13 @@ class _VideoAnimationTileState extends State<VideoAnimationTile>
   AnimationController _controller;
   double iconsHeightAndWidth;
   bool mute = true;
+
   @override
   void initState() {
     /*Animation Controller To Control Video ViewPort Size*/
     _controller =
         AnimationController(vsync: this, duration: Duration(milliseconds: 200));
+
     BetterPlayerConfiguration betterPlayerConfiguration =
         BetterPlayerConfiguration(
       fit: BoxFit.fill,
@@ -32,14 +34,18 @@ class _VideoAnimationTileState extends State<VideoAnimationTile>
       controlsConfiguration:
           BetterPlayerControlsConfiguration(showControls: false),
     );
+
     //  Setting Up Data Source
     BetterPlayerDataSource dataSource = BetterPlayerDataSource(
       BetterPlayerDataSourceType.network,
       widget.url,
       cacheConfiguration: BetterPlayerCacheConfiguration(
-        useCache: true,
-      ),
+          useCache: true,
+          //We Had To Change these Settings.
+          maxCacheSize: 2 * 1024 * 1024 * 1024,
+          maxCacheFileSize: 50 * 1024 * 1024),
     );
+
     _betterPlayerController = BetterPlayerController(betterPlayerConfiguration);
     _betterPlayerController.setupDataSource(dataSource);
     super.initState();
@@ -78,9 +84,9 @@ class _VideoAnimationTileState extends State<VideoAnimationTile>
                     id: widget.url,
                     builder:
                         (BuildContext context, bool isInView, Widget child) {
+                      _betterPlayerController.setLooping(true);
                       if (isInView) {
                         _betterPlayerController.play();
-                        _betterPlayerController.setLooping(true);
                       } else {
                         _betterPlayerController.pause();
                       }
@@ -89,7 +95,9 @@ class _VideoAnimationTileState extends State<VideoAnimationTile>
                         child: Stack(
                           children: [
                             /*Volume 1 equal to 100% */
-                            VideoPlayerWithControls(betterPlayerController: _betterPlayerController),
+                            VideoPlayerWithControls(
+                                betterPlayerController:
+                                    _betterPlayerController),
                             UserProfileImageLikeCommentShare(
                                 iconsHeightAndWidth: iconsHeightAndWidth,
                                 controller: _controller)
@@ -107,5 +115,3 @@ class _VideoAnimationTileState extends State<VideoAnimationTile>
     );
   }
 }
-
-
