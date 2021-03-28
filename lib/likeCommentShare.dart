@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'IconSvg.dart';
-
+import 'package:reels_ui_animation/scrollProvider.dart';
+import 'package:provider/provider.dart';
 class LikeCommentShare extends StatelessWidget {
   const LikeCommentShare({
     Key key,
@@ -14,6 +15,7 @@ class LikeCommentShare extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final myScrollProvider = Provider.of<ScrollProvider>(context, listen: false);
     return Row(
       children: [
         IconSvg(
@@ -30,6 +32,8 @@ class LikeCommentShare extends StatelessWidget {
           ),
           onTap: () {
             _controller.forward();
+            //Disabling Scroll
+            myScrollProvider.updateScrollable(scrollValue: false);
           },
         ),
         SizedBox(

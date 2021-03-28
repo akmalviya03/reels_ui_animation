@@ -8,7 +8,8 @@ import 'allComments.dart';
 
 class VideoAnimationTile extends StatefulWidget {
   final String url;
-  VideoAnimationTile({@required this.url});
+  VideoAnimationTile(
+      {@required this.url});
   @override
   _VideoAnimationTileState createState() => _VideoAnimationTileState();
 }
@@ -57,56 +58,69 @@ class _VideoAnimationTileState extends State<VideoAnimationTile>
     double fullVideoViewPortHeight = MediaQuery.of(context).size.height -
         kBottomNavigationBarHeight -
         ScreenUtil().statusBarHeight;
+
     return Container(
       width: MediaQuery.of(context).size.width,
       height: fullVideoViewPortHeight,
       color: Colors.black,
-      child: Stack(
-        alignment: Alignment.topCenter,
+      child: Column(
         children: [
-          AllComments(
-              fullVideoViewPortHeight: fullVideoViewPortHeight,
-              controller: _controller),
-          //Video Section
           AnimatedBuilder(
             animation: _controller,
             builder: (_, Widget child) {
+
               //Calculating icons Height And Width For Responsiveness.
               iconsHeightAndWidth = (fullVideoViewPortHeight * 1) * 0.05 -
                   (((fullVideoViewPortHeight * 1) * 0.05) / 2) *
                       _controller.value;
-              return FittedBox(
-                fit: BoxFit.fill,
-                child: SizedBox(
-                  height: fullVideoViewPortHeight -
-                      fullVideoViewPortHeight * 0.6 * _controller.value,
-                  child: InViewNotifierWidget(
-                    id: widget.url,
-                    builder:
-                        (BuildContext context, bool isInView, Widget child) {
-                      _betterPlayerController.setLooping(true);
-                      if (isInView) {
-                        _betterPlayerController.play();
-                      } else {
-                        _betterPlayerController.pause();
-                      }
-                      return AspectRatio(
-                        aspectRatio: (9 / 16),
-                        child: Stack(
-                          children: [
-                            /*Volume 1 equal to 100% */
-                            VideoPlayerWithControls(
-                                betterPlayerController:
-                                    _betterPlayerController),
-                            UserProfileImageLikeCommentShare(
-                                iconsHeightAndWidth: iconsHeightAndWidth,
-                                controller: _controller)
-                          ],
+
+              return Column(
+                children: [
+                  //Video Section
+                  FittedBox(
+                    fit: BoxFit.fill,
+                    child: SizedBox(
+                      //Both Height and width are Responsible for viewport height and width change.
+                      height: fullVideoViewPortHeight -
+                          fullVideoViewPortHeight * 0.6 * _controller.value,
+                      width: MediaQuery.of(context).size.width-MediaQuery.of(context).size.width*0.6*_controller.value,
+                      child: AspectRatio(
+                        aspectRatio: 9/16,
+                        child: InViewNotifierWidget(
+                          id: widget.url,
+                          builder:
+                              (BuildContext context, bool isInView, Widget child) {
+                            _betterPlayerController.setLooping(true);
+                            if (isInView) {
+                              _betterPlayerController.play();
+                            } else {
+                              _betterPlayerController.pause();
+                            }
+                            return Stack(
+                              children: [
+                                /*Volume 1 equal to 100% */
+                                VideoPlayerWithControls(
+                                    betterPlayerController:
+                                        _betterPlayerController),
+                                UserProfileImageLikeCommentShare(
+                                    iconsHeightAndWidth: iconsHeightAndWidth,
+                                    controller: _controller)
+                              ],
+                            );
+                          },
                         ),
-                      );
-                    },
+                      ),
+                    ),
                   ),
-                ),
+
+                  //All Comments
+                  Align(
+                    alignment: Alignment.bottomCenter,
+                    child: AllComments(
+                        fullVideoViewPortHeight: fullVideoViewPortHeight,
+                        controller: _controller),
+                  ),
+                ],
               );
             },
           ),
