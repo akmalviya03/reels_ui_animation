@@ -2,31 +2,25 @@ import 'package:better_player/better_player.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/screen_util.dart';
 import 'package:inview_notifier_list/inview_notifier_list.dart';
-import 'package:provider/provider.dart';
-import 'package:reels_ui_animation/scrollProvider.dart';
 import 'package:reels_ui_animation/userProfileImageLikeCommentShare.dart';
 import 'package:reels_ui_animation/videoPlayerWithControls.dart';
 import 'allComments.dart';
 
 class VideoAnimationTile extends StatefulWidget {
-  final String url;
   VideoAnimationTile({@required this.url});
+
+  final String url;
+
   @override
   _VideoAnimationTileState createState() => _VideoAnimationTileState();
 }
 
 class _VideoAnimationTileState extends State<VideoAnimationTile> with SingleTickerProviderStateMixin {
-  BetterPlayerController _betterPlayerController;
-  AnimationController _controller;
   double iconsHeightAndWidth;
   bool mute = true;
 
-  @override
-  void initState() {
-    /*Animation Controller To Control Video ViewPort Size*/
-
-    super.initState();
-  }
+  BetterPlayerController _betterPlayerController;
+  AnimationController _controller;
 
   @override
   void didChangeDependencies() {
@@ -53,6 +47,13 @@ class _VideoAnimationTileState extends State<VideoAnimationTile> with SingleTick
 
     _betterPlayerController = BetterPlayerController(betterPlayerConfiguration);
     _betterPlayerController.setupDataSource(dataSource);
+  }
+
+  @override
+  void initState() {
+    /*Animation Controller To Control Video ViewPort Size*/
+
+    super.initState();
   }
 
   @override
